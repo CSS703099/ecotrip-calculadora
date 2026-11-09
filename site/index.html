@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Simule emissões de uma viagem e compare quatro meios de transporte.">
+  <title>EcoTrip · Simulador de emissões</title>
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <header class="hero">
+    <div class="layout">
+      <p class="hero__tag">ECOTRIP / DIO CI&amp;T</p>
+      <h1>Quanto sua viagem emite?</h1>
+      <p>Compare meios de transporte e estime a compensação de carbono para o mesmo trajeto.</p>
+    </div>
+  </header>
+  <main class="layout workspace">
+    <section class="card" aria-labelledby="viagem-titulo">
+      <h2 id="viagem-titulo">Simular uma viagem</h2>
+      <form id="viagem" class="trip-form">
+        <label>Origem <input name="origem" list="cidades" value="Rio de Janeiro" required></label>
+        <label>Destino <input name="destino" list="cidades" value="Cabo Frio" required></label>
+        <datalist id="cidades"></datalist>
+        <label>Meio de transporte
+          <select name="transporte">
+            <option value="bicicleta">Bicicleta</option>
+            <option value="carro" selected>Carro</option>
+            <option value="onibus">Ônibus</option>
+            <option value="caminhao">Caminhão</option>
+          </select>
+        </label>
+        <label>Distância de ida em km
+          <input name="distancia" type="number" min="0.01" max="100000" step="any"
+                 placeholder="Opcional" aria-describedby="distancia-ajuda">
+        </label>
+        <p id="distancia-ajuda" class="trip-form__help">Preencha para substituir a distância da base ou calcular uma rota nova.</p>
+        <label class="trip-form__check"><input name="ida-volta" type="checkbox"> Incluir ida e volta</label>
+        <button type="submit">Calcular impacto</button>
+        <p id="mensagem" class="trip-form__error" role="alert"></p>
+      </form>
+    </section>
+    <section class="card" id="resultado" aria-labelledby="resultado-titulo" tabindex="-1" hidden>
+      <h2 id="resultado-titulo">Resultado estimado</h2>
+      <p id="origem-distancia" class="muted"></p>
+      <dl class="metrics">
+        <div><dt>Distância total</dt><dd id="distancia-total"></dd></div>
+        <div><dt>Emissão da viagem</dt><dd id="emissao-total"></dd></div>
+      </dl>
+      <h3>Emissões por meio de transporte</h3>
+      <ul id="comparacao" class="comparison"></ul>
+      <h3>Compensação estimada</h3>
+      <dl class="metrics">
+        <div><dt>Créditos em t CO₂e</dt><dd id="creditos"></dd></div>
+        <div><dt>Custo estimado</dt><dd id="custo"></dd></div>
+      </dl>
+      <p class="muted">Preço de referência simulado: <span id="preco-base"></span>.</p>
+    </section>
+    <aside class="method">
+      <h2>Como ler os números</h2>
+      <p>Rotas, fatores e preço são parâmetros didáticos. O cálculo usa a distância e o fator de
+        cada transporte. Para bicicleta, considera apenas emissões diretas durante a viagem.</p>
+    </aside>
+  </main>
+</body>
+</html>
