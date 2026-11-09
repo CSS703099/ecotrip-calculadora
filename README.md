@@ -37,5 +37,6 @@ A sequência foi HTML semântico, estilos BEM com variáveis, base de rotas e co
 ## Publicação
 
 [Abra a calculadora no GitHub Pages](https://css703099.github.io/ecotrip-calculadora/).
+Veja a [simulação validada no navegador](evidencias/ecotrip-calculo-verificado.jpg).
 
 O workflow em [.github/workflows/pages.yml](.github/workflows/pages.yml) roda os testes e publica apenas a pasta site. No GitHub, selecione **Settings → Pages → Source → GitHub Actions** e execute o workflow se necessário.
